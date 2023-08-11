@@ -14,53 +14,52 @@ import org.springframework.security.oauth2.provider.token.TokenStore;
 import org.springframework.security.oauth2.provider.token.store.JwtAccessTokenConverter;
 import org.springframework.security.oauth2.provider.token.store.JwtTokenStore;
 
-@Configuration
-@EnableAuthorizationServer
-@RequiredArgsConstructor
-public class AuthServerConfig  extends AuthorizationServerConfigurerAdapter {
 
-    private  final AuthenticationManager authenticationManager;
+public class AuthServerConfig   {
+//
+//    private  final AuthenticationManager authenticationManager;
+//
+//    private final PasswordEncoder passwordEncoder;
+//
+//    @Override
+//    public void configure(AuthorizationServerSecurityConfigurer security) throws Exception {
+//        security.passwordEncoder(passwordEncoder)
+//                 .checkTokenAccess("permitAll()"); // permitAll() //isAuthenticated()
+//    }
+//
+//    @Override
+//    public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
+//        clients.inMemory()
+//                .withClient("client1")
+//                .secret("secret1")
+//                .scopes("read")
+//                //.accessTokenValiditySeconds(1000)
+//                .authorizedGrantTypes("password","refresh_token")
+//                .and()
+//                .withClient("resourceserver")
+//                .secret("12345");
+//
+//    }
+//
+//    @Bean
+//    public TokenStore tokenStore() {
+//        return new JwtTokenStore(converter());
+//    }
+//
+//    @Bean
+//    public JwtAccessTokenConverter converter() {
+//        var conv = new JwtAccessTokenConverter();
+//        conv.setSigningKey("secret");
+//        return conv;
+//    }
+//
+//
+//
+//    @Override
+//    public void configure(AuthorizationServerEndpointsConfigurer endpoints) throws Exception {
+//        endpoints.authenticationManager(authenticationManager)
+//                .tokenStore(tokenStore())
+//                .accessTokenConverter(converter());
+//    }
 
-    private final PasswordEncoder passwordEncoder;
-
-    @Override
-    public void configure(AuthorizationServerSecurityConfigurer security) throws Exception {
-        security.passwordEncoder(passwordEncoder)
-                 .checkTokenAccess("permitAll()"); // permitAll() //isAuthenticated()
-    }
-
-    @Override
-    public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
-        clients.inMemory()
-                .withClient("client1")
-                .secret("secret1")
-                .scopes("read")
-                //.accessTokenValiditySeconds(1000)
-                .authorizedGrantTypes("password","refresh_token")
-                .and()
-                .withClient("resourceserver")
-                .secret("12345");
-
-    }
-
-    @Bean
-    public TokenStore tokenStore() {
-        return new JwtTokenStore(converter());
-    }
-
-    @Bean
-    public JwtAccessTokenConverter converter() {
-        var conv = new JwtAccessTokenConverter();
-        conv.setSigningKey("secret");
-        return conv;
-    }
-
-
-
-    @Override
-    public void configure(AuthorizationServerEndpointsConfigurer endpoints) throws Exception {
-        endpoints.authenticationManager(authenticationManager)
-                .tokenStore(tokenStore())
-                .accessTokenConverter(converter());
-    }
 }
